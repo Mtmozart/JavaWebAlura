@@ -27,5 +27,11 @@ public class SerieController {
         }
 
 
+    @GetMapping("/inicio")
+    public String retornarInicio() {
+        return "Bem-vindo!!!!";
     }
+
+
+}
 
