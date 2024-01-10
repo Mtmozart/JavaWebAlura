@@ -19,7 +19,7 @@ public class Serie {
     @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String atores;
-    private String poster;
+    private String post;
     private String sinopse;
 
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -33,7 +33,7 @@ public class Serie {
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
-        this.poster = dadosSerie.poster();
+        this.post = dadosSerie.poster();
         this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
@@ -95,11 +95,11 @@ public class Serie {
     }
 
     public String getPoster() {
-        return poster;
+        return post;
     }
 
     public void setPoster(String poster) {
-        this.poster = poster;
+        this.post = poster;
     }
 
     public String getSinopse() {
@@ -118,7 +118,7 @@ public class Serie {
                         ", totalTemporadas=" + totalTemporadas +
                         ", avaliacao=" + avaliacao +
                         ", atores='" + atores + '\'' +
-                        ", poster='" + poster + '\'' +
+                        ", poster='" + post + '\'' +
                         ", sinopse='" + sinopse + '\'' +
                         ", episodios='" + episodios + '\'';
     }
