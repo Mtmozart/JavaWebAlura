@@ -28,7 +28,6 @@ public class SerieService {
     }
 
 
-
     public List<SerieDTO> obterLancamentos() {
         return converteDados(repository.lacamentosMaisRecentes());
     }
@@ -55,15 +54,18 @@ public class SerieService {
     }
 
     public List<EpisodioDTO> obterTemporadasPorNumero(Long id, Long numero) {
-        return repository.obterEpisodiosPorTemporada(id, numero)
+        List<EpisodioDTO> variasSeries  = repository.obterEpisodiosPorTemporada(id, numero)
                 .stream()
                 .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
                 .collect(Collectors.toList());
+        return variasSeries;
     }
 
     private List<SerieDTO> converteDados(List<Serie> series) {
-        return series.stream()
+        return  series.stream()
                 .map(s -> new SerieDTO(s.getId(), s.getTitulo(), s.getTotalTemporadas(), s.getAvaliacao(), s.getGenero(), s.getAtores(), s.getPoster(), s.getSinopse()))
                 .collect(Collectors.toList());
+
+
     }
 }
