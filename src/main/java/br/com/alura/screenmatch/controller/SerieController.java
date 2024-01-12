@@ -54,6 +54,11 @@ public class SerieController {
 
     }
 
+    @GetMapping("/categoria/{categoria}")
+    public List<SerieDTO> obterSeriesPorCategoria(@PathVariable String categoria) {
+        return service.obterSeriesPorCategoria(categoria);
+
+    }
 
 }
 
