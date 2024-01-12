@@ -20,43 +20,40 @@ public class SerieController {
 
     @Autowired
     private SerieService service;
-
     //usado acima do método sobre a requisição que quero obter - seria como route
     @GetMapping("")
-
     public List<SerieDTO> obterSeries() {
         return service.obterTodasAsSeries();
     }
-
     @GetMapping("/top5")
     public List<SerieDTO> obterTop05Series() {
         return service.obterTop05Series();
     }
-
     @GetMapping("/lancamentos")
     public List<SerieDTO> obterLancamentos() {
         return service.obterLancamentos();
     }
-
     @GetMapping("/{id}")//anotação para entender que vem da url
     public SerieDTO obterPorId(@PathVariable Long id) {
         return service.obterSeriePorId(id);
     }
-
     @GetMapping("/{id}/temporadas/todas")//
     public List<EpisodioDTO> obterTodasAsTemporadas(@PathVariable Long id) {
         return service.obterTodasAsTemporadas(id);
     }
-
     @GetMapping("/{id}/temporadas/{numero}")
     public List<EpisodioDTO> obterTemporadasPorNumero(@PathVariable Long id, @PathVariable Long numero) {
         return service.obterTemporadasPorNumero(id, numero);
-
     }
-
     @GetMapping("/categoria/{categoria}")
     public List<SerieDTO> obterSeriesPorCategoria(@PathVariable String categoria) {
         return service.obterSeriesPorCategoria(categoria);
+
+    }
+
+    @GetMapping("/{id}/temporadas/top")
+    public List<EpisodioDTO> obterTopEpisodiosPorSerie(@PathVariable Integer id) {
+        return service.obterTopEpisodiosPorSerie(id);
 
     }
 
